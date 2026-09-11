@@ -52,8 +52,8 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
     const smsText = `New Member Alert!\nName: ${name}\nPhone: ${contact}\nChurch: ${church}`;
     
     // REPLACE THESE CODES WHEN YOU SIGN UP ON TEXTBEE.DEV
-    const deviceId = "YOUR_TEXTBEE_DEVICE_ID";
-    const apiKey = "YOUR_TEXTBEE_API_KEY";
+    const deviceId = "6aa3f9c3ccb6c727092860ed";
+    const apiKey = "txb_mP4sEQ76VzbYcAu3a7xeCfqmW6vJNywT";
 
     fetch(`https://textbee.dev{deviceId}/send-sms`, {
         method: 'POST',
