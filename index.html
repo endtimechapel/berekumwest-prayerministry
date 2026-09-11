@@ -55,23 +55,30 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
     const deviceId = "6aa3f9c3ccb6c727092860ed";
     const apiKey = "txb_mP4sEQ76VzbYcAu3a7xeCfqmW6vJNywT";
 
-    fetch(`https://textbee.dev{deviceId}/send-sms`, {
+    // CLEAN UPDATED CONNECTION ENGINE
+    const deviceId = "YOUR_REAL_DEVICE_ID";
+    const apiKey = "YOUR_REAL_API_KEY";
+
+    fetch(`https://api.textbee.dev/api/v1/gateway/send-sms`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'x-api-key': apiKey
         },
         body: JSON.stringify({
-            number: "+233248578656",
-            message: smsText
+            recipients: ["+233248578656"],
+            message: smsText,
+            deviceId: deviceId
         })
     })
     .then(res => {
+        if (!res.ok) throw new Error('Network error');
         alert("Registration Successful!");
         document.getElementById('regForm').reset();
     })
-    .catch(err => alert("Error connecting to free SMS gateway. Please configure TextBee settings."));
+    .catch(err => alert("Error connecting to free SMS gateway. Make sure the TextBee app is awake on your Samsung."));
 });
+
 </script>
 
 </body>
