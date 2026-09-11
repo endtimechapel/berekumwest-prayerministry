@@ -23,7 +23,7 @@
     <div class="logo-box">ASSEMBLIES OF GOD, GHANA</div>
     <h1>Berekum West District</h1>
     <h2>Prayer Ministry</h2>
-    <p class="vision">"Our Vision is giving ourselves unto prayer and the ministry of the word as Christians" - Acts 6:4</p>
+    <p class="vision">"Our Vision is to praying Christians" - Acts 6:4</p>
     <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
     <h3>Registration Information</h3>
     
@@ -54,11 +54,11 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
     const deviceId = "6aa3f9c3ccb6c7270928a3fe";
     const apiKey = "txb_mP4sEQ76VzbYCAu3a7R8D9mF";
 
-    fetch(`https://textbee.dev`, {
-        method: 'POST',
+    fetch("https://textbee.dev", {
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': apiKey
+            "Content-Type": "application/json",
+            "x-api-key": apiKey
         },
         body: JSON.stringify({
             recipients: ["+233248578656"],
@@ -68,16 +68,10 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
     })
     .then(res => {
         alert("Registration Successful!");
-        document.getElementById('regForm').reset();
+        document.getElementById("regForm").reset();
     })
-    .catch(err => alert("Error connecting to free SMS gateway."));
+    .catch(err => alert("Error connecting to notification server."));
 });
-
-        document.getElementById('regForm').reset();
-    })
-    .catch(err => alert("Error connecting to free SMS gateway. Make sure the TextBee app is awake on your Samsung."));
-});
-
 </script>
 
 </body>
