@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assemblies of God - Berekum West District</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; text-align: center; }
+        .container { max-width: 500px; background: white; margin: 0 auto; padding: 30px; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1); border-top: 8px solid #002B7F; }
+        .logo-box { background-color: #FFD100; padding: 15px; border-radius: 4px; font-weight: bold; color: #002B7F; border: 2px solid #002B7F; margin-bottom: 20px; font-size: 20px; }
+        h1 { color: #002B7F; font-size: 24px; margin: 5px 0; }
+        h2 { color: #555; font-size: 18px; margin-bottom: 5px; }
+        .vision { font-style: italic; color: #666; margin-bottom: 25px; }
+        label { display: block; text-align: left; margin: 10px 0 5px; font-weight: bold; color: #333; }
+        input[type="text"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #002B7F; color: white; border: none; padding: 12px 20px; width: 100%; font-size: 16px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #001A4E; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo-box">ASSEMBLIES OF GOD, GHANA</div>
+    <h1>Berekum West District</h1>
+    <h2>Prayer Ministry</h2>
+    <p class="vision">"Our Vision is to praying Christians" - Acts 6:4</p>
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+    <h3>Registration Information</h3>
+    
+    <form id="regForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required placeholder="Enter full name">
+        
+        <label for="contact">Contact:</label>
+        <input type="text" id="contact" required placeholder="Enter phone number">
+        
+        <label for="church">Local Church:</label>
+        <input type="text" id="church" required placeholder="e.g. Central Assembly">
+        
+        <button type="submit">Register Now</button>
+    </form>
+</div>
+
+<script>
+document.getElementById('regForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const contact = document.getElementById('contact').value;
+    const church = document.getElementById('church').value;
+    
+    const smsText = `New Member Alert!\nName: ${name}\nPhone: ${contact}\nChurch: ${church}`;
+    
+    // REPLACE THESE CODES WHEN YOU SIGN UP ON TEXTBEE.DEV
+    const deviceId = "YOUR_TEXTBEE_DEVICE_ID";
+    const apiKey = "YOUR_TEXTBEE_API_KEY";
+
+    fetch(`https://textbee.dev{deviceId}/send-sms`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': apiKey
+        },
+        body: JSON.stringify({
+            number: "0248578656",
+            message: smsText
+        })
+    })
+    .then(res => {
+        alert("Registration Successful!");
+        document.getElementById('regForm').reset();
+    })
+    .catch(err => alert("Error connecting to free SMS gateway. Please configure TextBee settings."));
+});
+</script>
+
+</body>
+</html>
