@@ -52,14 +52,11 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
     const smsText = `New Member Alert!\nName: ${name}\nPhone: ${contact}\nChurch: ${church}`;
     
     // REPLACE THESE CODES WHEN YOU SIGN UP ON TEXTBEE.DEV
-    const deviceId = "6aa3f9c3ccb6c727092860ed";
-    const apiKey = "txb_mP4sEQ76VzbYcAu3a7xeCfqmW6vJNywT";
+        // CLEAN UPDATED CONNECTION ENGINE
+    const deviceId = "6aa3f9c3ccb6c7270928a3fe";
+    const apiKey = "txb_mP4sEQ76VzbYCAu3a7R8D9mF";
 
-    // CLEAN UPDATED CONNECTION ENGINE
-    const deviceId = "YOUR_REAL_DEVICE_ID";
-    const apiKey = "YOUR_REAL_API_KEY";
-
-    fetch(`https://api.textbee.dev/api/v1/gateway/send-sms`, {
+    fetch(`https://textbee.dev`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -72,8 +69,12 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
         })
     })
     .then(res => {
-        if (!res.ok) throw new Error('Network error');
         alert("Registration Successful!");
+        document.getElementById('regForm').reset();
+    })
+    .catch(err => alert("Error connecting to free SMS gateway."));
+});
+
         document.getElementById('regForm').reset();
     })
     .catch(err => alert("Error connecting to free SMS gateway. Make sure the TextBee app is awake on your Samsung."));
