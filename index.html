@@ -50,8 +50,8 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
     const church = document.getElementById('church').value;
     
     const smsText = `New Member Alert!\nName: ${name}\nPhone: ${contact}\nChurch: ${church}`;
-    const botToken = "8612878616:AAGzLH5O10vjyZIm5A-6akuZqJ0rczgMsHE";
-const chatId = "7959798304";
+    const botToken = "";
+const chatId = "";
 
 fetch(`https://telegram.org{botToken}/sendMessage`, {
     method: "POST",
