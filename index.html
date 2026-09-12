@@ -50,29 +50,23 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
     const church = document.getElementById('church').value;
     
     const smsText = `New Member Alert!\nName: ${name}\nPhone: ${contact}\nChurch: ${church}`;
-    
-    const deviceId = "6aa3f9c3ccb6c727092860ed";
-    const apiKey = "txb_3YqKhLjHDbqzvcXyMPC764gA6E6eqToW";
+    const botToken = "8612878616:AAGzLH5O10vjyZIm5A-6akuZqJ0rczgMsHE";
+const chatId = "7959798304";
 
-    fetch("https://textbee.dev", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "x-api-key": apiKey
-        },
-        body: JSON.stringify({
-            recipients: ["+233248578656"],
-            message: smsText,
-            deviceId: deviceId
-        })
+fetch(`https://telegram.org{botToken}/sendMessage`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        chat_id: chatId,
+        text: smsText
     })
-    .then(res => {
-        alert("Registration Successful!");
-        document.getElementById("regForm").reset();
-    })
-    .catch(err => alert("Error connecting to notification server."));
-});
-</script>
+})
+.then(res => {
+    alert("Registration Successful!");
+    document.getElementById("regForm").reset();
+})
+.catch(err => alert("Error connecting to notification server."));
 
-</body>
-</html>
+ 
