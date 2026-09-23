@@ -16,15 +16,6 @@
         button { background-color: #002B7F; color: white; border: none; padding: 12px 20px; width: 100%; font-size: 16px; border-radius: 4px; cursor: pointer; }
         button:hover { background-color: #001A4E; }
     </style>
-    
-    <!-- 1. Include the EmailJS SDK Library -->
-    <script type="text/javascript" src="https://jsdelivr.net"></script>
-    <script type="text/javascript">
-        (function() {
-            // Replace with your actual EmailJS Public Key
-            emailjs.init("0G_CqiW5U1OtUrM8w"); 
-        })();
-    </script>
 </head>
 <body>
 
@@ -50,13 +41,25 @@
         </form>
     </div>
 
-    <!-- 2. EmailJS Submission Logic -->
+    <!-- 1. CORRECTED: Fixed EmailJS Library Link -->
+    <script type="text/javascript" src="https://jsdelivr.net"></script>
+    
+    <!-- 2. CORRECTED: Fixed EmailJS Init Method -->
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+                publicKey: "U7Ef3p_tG_EZegWvL"
+            }); 
+        })();
+    </script>
+
+    <!-- 3. Form Submission Logic -->
     <script>
         document.getElementById('regForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
             // Send form data directly using your Service ID and Template ID
-            emailjs.sendForm('service_smakaro','template_866nw7t', this)
+            emailjs.sendForm('service_smakaro', 'template_866nw7t', this)
                 .then(function() {
                     alert("Registration Successful!");
                     document.getElementById("regForm").reset();
