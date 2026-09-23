@@ -6,67 +6,65 @@
     <title>Assemblies of God - Berekum West District</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; text-align: center; }
-        .container { max-width: 500px; background: white; margin: 0 auto; padding: 30px; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1); border-top: 8px solid #002B7F; }
-        .logo-box { background-color: #FFD100; padding: 15px; border-radius: 4px; font-weight: bold; color: #002B7F; border: 2px solid #002B7F; margin-bottom: 20px; font-size: 20px; }
+        .container { max-width: 500px; background: white; margin: 0 auto; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .logo-box { background-color: #FFD100; padding: 15px; border-radius: 4px; font-weight: bold; color: #002B7F; }
         h1 { color: #002B7F; font-size: 24px; margin: 5px 0; }
         h2 { color: #555; font-size: 18px; margin-bottom: 5px; }
         .vision { font-style: italic; color: #666; margin-bottom: 25px; }
         label { display: block; text-align: left; margin: 10px 0 5px; font-weight: bold; color: #333; }
         input[type="text"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { background-color: #002B7F; color: white; border: none; padding: 12px 20px; width: 100%; font-size: 16px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        button { background-color: #002B7F; color: white; border: none; padding: 12px 20px; width: 100%; font-size: 16px; border-radius: 4px; cursor: pointer; }
         button:hover { background-color: #001A4E; }
     </style>
+    
+    <!-- 1. Include the EmailJS SDK Library -->
+    <script type="text/javascript" src="https://jsdelivr.net"></script>
+    <script type="text/javascript">
+        (function() {
+            // Replace with your actual EmailJS Public Key
+            emailjs.init("0G_CqiW5U1OtUrM8w"); 
+        })();
+    </script>
 </head>
 <body>
 
-<div class="container">
-    <div class="logo-box">ASSEMBLIES OF GOD, GHANA</div>
-    <h1>Berekum West District</h1>
-    <h2>Prayer Ministry</h2>
-    <p class="vision">"committing ourselves unto prayer and the ministry of the word as Christians" - Acts 6:4</p>
-    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-    <h3>Registration Information</h3>
-    
-    <form id="regForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" required placeholder="Enter full name">
-        
-        <label for="contact">Contact:</label>
-        <input type="text" id="contact" required placeholder="Enter phone number">
-        
-        <label for="church">Local Church:</label>
-        <input type="text" id="church" required placeholder="e.g. Central Assembly">
-        
-        <button type="submit">Register Now</button>
-    </form>
-</div>
+    <div class="container">
+        <div class="logo-box">ASSEMBLIES OF GOD, GHANA</div>
+        <h1>Berekum West District</h1>
+        <h2>Prayer Ministry</h2>
+        <p class="vision">"committing ourselves unto prayer and the ministry of the word as christians" - Acts 6:4</p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        <h3>Registration Information</h3>
 
-<script>
-document.getElementById('regForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const name = document.getElementById('name').value;
-    const contact = document.getElementById('contact').value;
-    const church = document.getElementById('church').value;
-    
-    const smsText = `New Member Alert!\nName: ${name}\nPhone: ${contact}\nChurch: ${church}`;
-    const botToken = "";
-const chatId = "";
+        <form id="regForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="user_name" required placeholder="Enter full name">
 
-fetch(`https://telegram.org{botToken}/sendMessage`, {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        chat_id: chatId,
-        text: smsText
-    })
-})
-.then(res => {
-    alert("Registration Successful!");
-    document.getElementById("regForm").reset();
-})
-.catch(err => alert("Error connecting to notification server."));
+            <label for="contact">Contact:</label>
+            <input type="text" id="contact" name="user_contact" required placeholder="Enter phone number">
 
- 
+            <label for="church">Local Church:</label>
+            <input type="text" id="church" name="user_church" required placeholder="e.g. Central Assembly">
+
+            <button type="submit">Register Now</button>
+        </form>
+    </div>
+
+    <!-- 2. EmailJS Submission Logic -->
+    <script>
+        document.getElementById('regForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Send form data directly using your Service ID and Template ID
+            emailjs.sendForm('service_smakaro', 'template_866nw7t', this)
+                .then(function() {
+                    alert("Registration Successful!");
+                    document.getElementById("regForm").reset();
+                }, function(error) {
+                    alert("Error connecting to notification server: " + JSON.stringify(error));
+                });
+        });
+    </script>
+
+</body>
+</html>
