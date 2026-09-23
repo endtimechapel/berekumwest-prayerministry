@@ -56,7 +56,7 @@
             e.preventDefault();
 
             // Send form data directly using your Service ID and Template ID
-            emailjs.sendForm('service_smakaro', 'template_866nw7t', this)
+            emailjs.sendForm('service_smakaro','template_866nw7t', this)
                 .then(function() {
                     alert("Registration Successful!");
                     document.getElementById("regForm").reset();
